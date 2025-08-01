@@ -1,16 +1,19 @@
 import { useCart } from "../context/CartContext";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 export default function Checkout() {
   const { cart } = useCart();
   const [formData, setFormData] = useState({ name: "", address: "" });
+  const navigate = useNavigate(); 
   const total = cart.reduce((sum, item) => sum + item.price, 0);
 
   const handleChange = e =>
     setFormData({ ...formData, [e.target.name]: e.target.value });
 
   const handleSubmit = e => {
-    // e.preventDefault();
+     e.preventDefault();
+    navigate("/");
     alert("Order placed successfully!");
   };
 
