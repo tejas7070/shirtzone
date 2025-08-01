@@ -3,7 +3,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 export default function Checkout() {
-  const { cart } = useCart();
+  const { cart, clearCart } = useCart();
   const [formData, setFormData] = useState({ name: "", address: "" });
   const navigate = useNavigate(); 
   const total = cart.reduce((sum, item) => sum + item.price, 0);
@@ -15,6 +15,7 @@ export default function Checkout() {
      e.preventDefault();
     navigate("/");
     alert("Order placed successfully!");
+    clearCart();
   };
 
     return (
